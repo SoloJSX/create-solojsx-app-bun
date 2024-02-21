@@ -3,9 +3,7 @@ import chalk from 'chalk';
 import { execSync } from 'child_process';
 import { join } from 'path';
 
-let projectName = process.argv[2];
-projectName ??= ".";
-
+const projectName = process.argv[2] || ".";
 const projectPath = join(process.cwd(), projectName);
 try {
     execSync(`git clone https://github.com/eekelof/SoloJSX-template-ts.git`);
@@ -15,12 +13,10 @@ try {
     execSync('bun i');
 }
 catch (err) {
-    console.log(chalk.red("Directory", projectPath, "already exists, or something else went wrong.", err));
+    console.log(chalk.red("Directory", projectPath, "already exists, or something else went wrong. \N Error:", err));
     process.exit(1);
 }
 
 console.log(chalk.green("Project", chalk.green.bold(projectName), "created!"));
 console.log(chalk.blue("Now run the following command" + ((projectName != ".") ? "s" : "") + ":"));
-if (projectName != ".")
-    console.log(`cd ${projectName}`);
-console.log(`bun dev`);
+console.log(((projectName != ".") ? (`cd ${projectName}\n`) : "") + `bun run dev`);
