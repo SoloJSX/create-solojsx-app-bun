@@ -7,7 +7,7 @@ const projectName = process.argv[2] || ".";
 const projectPath = join(process.cwd(), projectName);
 try {
     execSync(`git clone https://github.com/eekelof/SoloJSX-template-ts.git`);
-    execSync(`rsync -av --progress SoloJSX-template-ts/ ${projectPath}/ --exclude '.git' --exclude 'package-lock.json'`);
+    execSync(`rsync -av --progress SoloJSX-template-ts/ ${projectPath}/ --exclude '.git' --exclude 'package-lock.json' --exclude 'LICENSE'`);
     execSync(`rm -rf SoloJSX-template-ts`);
     process.chdir(projectPath);
     execSync('bun i');
