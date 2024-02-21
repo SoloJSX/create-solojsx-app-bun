@@ -1,7 +1,7 @@
 {
     "type": "module",
     "name": "create-solojsx-app-bun",
-    "version": "1.0.5",
+    "version": "1.1.0",
     "description": "Generates a SoloJSX app using bun",
     "main": "index.js",
     "repository": {
@@ -9,7 +9,7 @@
         "url": "git+https://github.com/eekelof/create.solojsx-app.git"
     },
     "bin": {
-        "create-solojsx-app-bun": "./index.js"
+        "create-solojsx-app-bun": "index.js"
     },
     "keywords": [
         "solojsx"

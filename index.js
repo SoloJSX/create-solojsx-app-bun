@@ -1,7 +1,6 @@
 #!/usr/bin/env bun
 import chalk from 'chalk';
 import { execSync } from 'child_process';
-import fs from 'fs';
 import { join } from 'path';
 
 let projectName = process.argv[2];
@@ -9,18 +8,10 @@ projectName ??= ".";
 
 const projectPath = join(process.cwd(), projectName);
 try {
-    execSync(`git clone https://github.com/eekelof/SoloJSX-template-ts.git ${projectPath}`);
+    execSync(`git clone https://github.com/eekelof/SoloJSX-template-ts.git`);
+    execSync(`rsync -av --progress SoloJSX-template-ts/ ${projectPath}/ --exclude '.git' --exclude 'package-lock.json'`);
+    execSync(`rm -rf SoloJSX-template-ts`);
     process.chdir(projectPath);
-
-    const gitPath = join(projectPath, '.git');
-    if (fs.existsSync(gitPath)) {
-        fs.rmdirSync(gitPath, { recursive: true });
-    }
-    const packageLockPath = join(projectPath, 'package-lock.json');
-    if (fs.existsSync(packageLockPath)) {
-        fs.unlinkSync(packageLockPath);
-    }
-
     execSync('bun i');
 }
 catch (err) {
