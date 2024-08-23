@@ -30,4 +30,4 @@ catch (err) {
 }
 console.log(chalk.green("Project", chalk.green.bold(projectName), "created!"));
 console.log(chalk.blue("Now run the following command" + ((projectName != ".") ? "s" : "") + ":"));
-console.log(((projectName != ".") ? (`cd ${projectName}\n`) : "") + `npm run dev`);
+console.log(((projectName != ".") ? (`cd ${projectName}\n`) : "") + `bun run dev`);
